@@ -4,10 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
-      "scripts": {
-    "postinstall": "prisma generate"
-  }
-
+    "scripts": {
+      "postinstall": "prisma generate"
+    }
   },
   "keywords": [],
   "author": "",
@@ -26,7 +25,9 @@
   },
   "dependencies": {
     "@prisma/client": "^6.9.0",
-    "express": "^5.1.0"
+    "@types/swagger-ui-express": "^4.1.8",
+    "express": "^5.1.0",
+    "swagger-ui-express": "^5.0.1"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
