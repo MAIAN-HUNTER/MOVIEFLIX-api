@@ -170,6 +170,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -196,8 +200,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel clientes {\n  id    Int     @id @default(autoincrement())\n  nome  String? @db.VarChar(50)\n  email String? @db.VarChar(50)\n}\n\nmodel Genre {\n  id     Int     @id @default(autoincrement())\n  name   String? @db.VarChar(100)\n  movies Movie[]\n\n  @@map(\"genres\")\n}\n\nmodel Language {\n  id     Int     @id @default(autoincrement())\n  name   String? @db.VarChar(100)\n  movies Movie[]\n\n  @@map(\"languages\")\n}\n\n/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.\nmodel motocycles_a {\n  nome String? @db.VarChar(50)\n\n  @@ignore\n}\n\n/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.\nmodel motocycles_b {\n  nome String? @db.VarChar(50)\n\n  @@ignore\n}\n\nmodel Movie {\n  id           Int       @id @default(autoincrement())\n  title        String?   @db.VarChar(100)\n  release_date DateTime? @db.Date\n  genre_id     Int?\n  language_id  Int?\n  oscar_count  Int?\n  genres       Genre?    @relation(fields: [genre_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"fk_genre\")\n  languages    Language? @relation(fields: [language_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"fk_language\")\n\n  @@map(\"movies\")\n}\n\nmodel pedidos {\n  id            Int       @id @default(autoincrement())\n  cliente_id    Int?\n  data_         DateTime? @db.Date\n  valor         Int?\n  pedidos       pedidos?  @relation(\"pedidosTopedidos\", fields: [cliente_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"fk_client\")\n  other_pedidos pedidos[] @relation(\"pedidosTopedidos\")\n}\n\n/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.\nmodel sales {\n  value Decimal? @db.Decimal(10, 2)\n\n  @@ignore\n}\n",
-  "inlineSchemaHash": "1e59d293f8f760f89e576458b4a1a91b20f3bfb72984767b85bff33c414ca165",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n  output        = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel clientes {\n  id    Int     @id @default(autoincrement())\n  nome  String? @db.VarChar(50)\n  email String? @db.VarChar(50)\n}\n\nmodel Genre {\n  id     Int     @id @default(autoincrement())\n  name   String? @db.VarChar(100)\n  movies Movie[]\n\n  @@map(\"genres\")\n}\n\nmodel Language {\n  id     Int     @id @default(autoincrement())\n  name   String? @db.VarChar(100)\n  movies Movie[]\n\n  @@map(\"languages\")\n}\n\n/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.\nmodel motocycles_a {\n  nome String? @db.VarChar(50)\n\n  @@ignore\n}\n\n/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.\nmodel motocycles_b {\n  nome String? @db.VarChar(50)\n\n  @@ignore\n}\n\nmodel Movie {\n  id           Int       @id @default(autoincrement())\n  title        String?   @db.VarChar(100)\n  release_date DateTime? @db.Date\n  genre_id     Int?\n  language_id  Int?\n  oscar_count  Int?\n  genres       Genre?    @relation(fields: [genre_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"fk_genre\")\n  languages    Language? @relation(fields: [language_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"fk_language\")\n\n  @@map(\"movies\")\n}\n\nmodel pedidos {\n  id            Int       @id @default(autoincrement())\n  cliente_id    Int?\n  data_         DateTime? @db.Date\n  valor         Int?\n  pedidos       pedidos?  @relation(\"pedidosTopedidos\", fields: [cliente_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: \"fk_client\")\n  other_pedidos pedidos[] @relation(\"pedidosTopedidos\")\n}\n\n/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.\nmodel sales {\n  value Decimal? @db.Decimal(10, 2)\n\n  @@ignore\n}\n",
+  "inlineSchemaHash": "133953e30fb173c080be3d204420934e3e7c1545270016bcf94fec1c3754c2d0",
   "copyEngine": true
 }
 
@@ -238,6 +242,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/generated/prisma/schema.prisma")
