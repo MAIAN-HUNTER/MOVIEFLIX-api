@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
-    "start": "node dist/src/server.js",
+    "start": "node /app/dist/server.js",
     "build": "tsc",
     "scripts": {
       "postinstall": "prisma generate"
